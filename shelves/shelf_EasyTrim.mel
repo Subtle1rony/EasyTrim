@@ -32,7 +32,7 @@ global proc shelf_EasyTrim () {
         -style "iconOnly" 
         -marginWidth 1
         -marginHeight 1
-        -command "import easyTrim as et\n\nreload(et)\n\nmyTrim = et.EasyTrim()\nmyTrim.easyExtrude()" 
+        -command "import easyTrim as et\n\nmyTrim = et.EasyTrim()\nmyTrim.easyExtrude()" 
         -sourceType "python" 
         -commandRepeatable 1
         -flat 1
