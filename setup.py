@@ -17,7 +17,7 @@ def onMayaDroppedPythonFile(self):
 
 	versionOfMaya = getMayaVersion(mayaPath)[4:]
 
-	print "\nVersion of Maya: %s" % versionOfMaya
+	print("\nVersion of Maya: %s" % versionOfMaya)
 
 	#names of the files
 	script = "easyTrim.py"
@@ -30,22 +30,22 @@ def onMayaDroppedPythonFile(self):
 	mayaIconsPath = os.path.join(mayaPrefsPath, versionOfMaya, "prefs", "icons", icon)
 
 	#print paths to verify
-	print "\nMaya Paths"
-	print mayaScriptsPath
-	print mayaShelvesPath
-	print mayaIconsPath
+	print ("\nMaya Paths")
+	print (mayaScriptsPath)
+	print (mayaShelvesPath)
+	print (mayaIconsPath)
 
 	localScriptsPath = os.path.join(setupPath, "scripts", script)
 	localShelvesPath = os.path.join(setupPath, "shelves", shelf)
 	localIconsPath = os.path.join(setupPath, "icons", icon)
 
-	print "\nSetup folder paths"
-	print localScriptsPath
-	print localShelvesPath
-	print localIconsPath
+	print ("\nSetup folder paths")
+	print (localScriptsPath)
+	print (localShelvesPath)
+	print (localIconsPath)
 
 	#copy files
-	print "\ncopying files to proper directoies...\n"
+	print ("\ncopying files to proper directoies...\n")
 	shutil.copyfile(localScriptsPath, mayaScriptsPath)
 	shutil.copyfile(localShelvesPath, mayaShelvesPath)
 	shutil.copyfile(localIconsPath, mayaIconsPath)
@@ -65,9 +65,9 @@ def verifyPaths(paths):
 	#expecting a list of paths
 	for path in paths:
 		if os.path.exists(path):
-			print "Verified path exists: %s" % path
+			print ("Verified path exists: %s" % path)
 		else:
-			print "Path does not exist: %s" % path
+			print ("Path does not exist: %s" % path)
 
 			cmds.confirmDialog( title="Error in Setup", message='You may need to manually copy files, '
 																'as described in Setup Instructions.txt',
@@ -80,7 +80,7 @@ def verifyPaths(paths):
 def getMayaVersion(mayaPath):
 
 	#determine version of maya
-	supportedVersions = ["Maya2018", "Maya2019"]
+	supportedVersions = ["Maya2018", "Maya2019", 'Maya2024']
 	currentVersion = ""
 
 	for year in supportedVersions:

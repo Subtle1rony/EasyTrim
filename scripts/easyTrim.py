@@ -63,7 +63,7 @@ class EasyTrim(object):
 		selection = cmds.ls(sl = True)
 		
 		if selection == []:
-			print "None"
+			print ("None")
 			sys.stdout.write("Nothing selected. Select continuous poly edges, " 
 							 "then the profile curve")
 			return None, None
@@ -73,8 +73,8 @@ class EasyTrim(object):
 		cmds.select(profile, d = True)
 		edges = cmds.ls(sl = True)
 
-		print profile
-		print edges
+		print (profile)
+		print (edges)
 
 		cmds.select(cl = True)
 		cmds.select(profile)
@@ -216,8 +216,8 @@ class EasyTrim(object):
 		but only if the curve runs inside the extruded profile curve
 		"""
 		curvePoint = tuple(cmds.pointOnCurve(curve, p = True, pr = 0))
-		print "curvePoint"
-		print curvePoint
+		print ("curvePoint")
+		print (curvePoint)
 
 		cpmNode = cmds.createNode("closestPointOnMesh")
 
@@ -233,21 +233,21 @@ class EasyTrim(object):
 		length = om.MVector(surfToCurve[0], surfToCurve[1], surfToCurve[2]).length()
 
 		if length <.001:
-			print "surf to curve length less than zero, using curve normal"
+			print ("surf to curve length less than zero, using curve normal")
 			curveNormal = tuple(self.getCurveNormal(curve, curvePoint)[0])
 			curveNormalWorldPos = tuple(map(add, curvePoint, curveNormal ))
 			curvePtToCurveWorldPos = tuple(map(sub, curveNormalWorldPos, curvePoint ))
 
 			angleBetweenTwo = cmds.angleBetween(v1 = surfaceNrm, v2=curvePtToCurveWorldPos)[3]
-			print angleBetweenTwo
+			print (angleBetweenTwo)
 		else:
-			print "surf to curve length greater than zero"
+			print ("surf to curve length greater than zero")
 			angleBetweenTwo = cmds.angleBetween(v1 = surfaceNrm, v2=surfToCurve)[3]
-			print angleBetweenTwo
+			print (angleBetweenTwo)
 
 		#if angle between 2 vectors is < 90, flip normals
 		if int(angleBetweenTwo) <= 90:
-			print "reversing normals"
+			print ("reversing normals")
 			#reverse surface normals
 			#construction history reverses polySurface as well
 			cmds.reverseSurface( nurbsSurface, ch = False)
